@@ -13,7 +13,7 @@ class TestTweetsPost(unittest.TestCase):
 
     def test_post_data_recieved(self):
         response = self.test_app.post(self.url, json=self.good_json)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
 
     def test_post_bad_data(self):
         response = self.test_app.post(self.url, json=self.bad_json)
