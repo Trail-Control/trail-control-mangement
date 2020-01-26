@@ -2,6 +2,7 @@ import sqlite3
 
 from flask import current_app, g
 from api import routes
+from datetime import datetime
 
 DATABASE = 'trails.db'
 _app = None
@@ -38,3 +39,12 @@ def query_db(query, args=(), one=False):
     rv = cur.fetchall()
     cur.close()
     return (rv[0] if rv else None) if one else rv
+
+
+def insert_rows(query, rows):
+    print(rows)
+    for org in rows.keys():
+        for status in rows[org]:
+            get_db().execute(query, list(status.values()))
+    get_db().commit()
+
